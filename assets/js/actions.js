@@ -1,6 +1,6 @@
 let selectedFile = DUMMY_COCO;
-// const BASE_URL = "https://192ab4b1-2793-4ff2-a22e-86b0a69455d9.mock.pstmn.io"
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = "https://192ab4b1-2793-4ff2-a22e-86b0a69455d9.mock.pstmn.io"
+// const BASE_URL = "http://localhost:5000"
 
 
 const onImageSelect = () => {
@@ -25,7 +25,7 @@ const onUploadClick = () => {
     let formData = new FormData();
     formData.append('image', selectedFile);
     setUploadBtnState(true)
-    axios.post(BASE_URL + "/predict/3", formData, {
+    axios.post(BASE_URL + "/predict/1", formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
@@ -58,11 +58,11 @@ const processResult = (result) => {
 
     if (String(result).includes("Mature")) {
         processedResult.icon = "assets\\img\\ready.png"
-        processedResult.text = "Ready for cultivation"
+        processedResult.text = "Ready for harvesting"
         processedResult.isReady = true
     } else {
         processedResult.icon = "assets\\img\\not-ready.png"
-        processedResult.text = "Not ready for cultivation"
+        processedResult.text = "Not ready for harvesting"
     }
 
     return processedResult;
